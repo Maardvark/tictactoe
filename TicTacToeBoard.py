@@ -1,4 +1,4 @@
-#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
+#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
 class Board:
 	def __init__(self):
 		self.boardList = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
