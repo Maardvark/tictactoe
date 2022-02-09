@@ -9,21 +9,23 @@ class Game:
 		playerPieces = ["x", "o"]
 		playerIndex = 0
 		
+		#continue gameplay as long as the board is not full (game will also stop if someone wins)
 		while not self.board.isBoardFull():
-			selectSpace = input("Select space to place piece: ")
+			selectSpace = input("Select space to place piece: ") #player select space (#1-9) to play piece
 			
+			#if a valid, available number is entered, the current player's piece will be placed on the selected space
 			if selectSpace in self.board.boardList:
-				self.board.boardList[int(selectSpace) - 1] = playerPieces[playerIndex]
-				playerIndex = self.switchPlayer(playerIndex)
+				self.board.boardList[int(selectSpace) - 1] = playerPieces[playerIndex] #set space to either "x" or "o"
+				playerIndex = self.switchPlayer(playerIndex) #switch to next player (and switch to next piece)
 				print(self.board)
 			else:
-				print("Invalid entry. Try again.\n")
+				print("Invalid entry. Try again.\n") #only select available indices 1-9
 				
 			if self.board.hasWinner():
-				print("WINNER")
-				break
+				print("GAME OVER - WINNER")
+				return
 		
-		print("GAME OVER")
+		print("GAME OVER - DRAW")
 	
 	def switchPlayer(self, playerIndex):
 		if playerIndex == 0:

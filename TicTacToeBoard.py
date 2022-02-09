@@ -3,9 +3,11 @@ class Board:
 	def __init__(self):
 		self.boardList = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 		print(self)
+		
+		#[0,1,2], [3,4,5], [6,7,8] #horizontal wins
+		#[0,3,6], [1,4,7], [2,5,8] #vertical wins
+		#[0,4,8], [2,4,6] diagonal wins
 		self.winConditions = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
-		#self.winConditions.append([0,1,2], [3,4,5], [6,7,8]) #horizontal wins
-		#self.winConditions.append([0,3,6], [1,4,7], [2,5,8]) #vertical wins
 		
 	def __str__(self):
 		boardString = ""
@@ -32,14 +34,14 @@ class Board:
 		return False
 		
 	def isBoardFull(self):
-		new_list = []
+		tempList = []
 		for value in self.boardList:
 			try:
-				new_list.append(int(value))
+				tempList.append(int(value)) #if a single entry can be cast to an int, then that means at least one space on the board is still open
 				return False
 			except ValueError:
 				continue
 				
-		return True
+		return True #if all spaces are taken, then there will be no integers in self.boardList...if we get this far without a winner, then we have a draw
 		
 #newBoard = Board() #testing
